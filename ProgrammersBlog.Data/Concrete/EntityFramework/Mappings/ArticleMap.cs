@@ -43,6 +43,92 @@ namespace ProgrammersBlog.Data.Concrete.EntityFramework.Mappings
             builder.HasOne<User>(a => a.User).WithMany(u => u.Articles).HasForeignKey(a => a.UserId);
             builder.ToTable("Articles");
 
+            builder.HasData(
+                new Article
+                {
+                    Id=1,
+                    CategoryId=1,
+                    Title=".Net 5",
+                    Content= "Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. " +
+                    "Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı " +
+                    "1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, " +
+                    "aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması " +
+                    "ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.",
+                    Thumbnail="Default.jpg",
+                    SeoDescription= ".Net 5",
+                    SeoTags="C#, .Net, .Net5, .Net Core ",
+                    SeoAuthor="Umut Sönmez",
+                    Date=DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = ".Net5",
+                    UserId=1,
+                    ViewsCount = 100,
+                    CommentCount = 1
+
+                },
+
+                new Article
+                {
+                    Id = 2,
+                    CategoryId = 2,
+                    Title = "C++",
+                    Content = "Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. " +
+                    "Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı " +
+                    "1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, " +
+                    "aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması " +
+                    "ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.",
+                    Thumbnail = "Default.jpg",
+                    SeoDescription = "C++",
+                    SeoTags = "C++, ",
+                    SeoAuthor = "Umut Sönmez",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = "C++",
+                    UserId = 1,
+                    ViewsCount = 100,
+                    CommentCount = 1
+                },
+
+                new Article
+                {
+                    Id = 3,
+                    CategoryId = 3,
+                    Title = "JavaScript",
+                    Content = "Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. " +
+                    "Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı " +
+                    "1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, " +
+                    "aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması " +
+                    "ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.",
+                    Thumbnail = "Default.jpg",
+                    SeoDescription = "JavaScript",
+                    SeoTags = "JavaScript, Js ",
+                    SeoAuthor = "Umut Sönmez",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = "JavaScript",
+                    UserId = 1,
+                    ViewsCount=100,
+                    CommentCount=1
+                    
+                }
+
+            );
+
         }
     }
 }

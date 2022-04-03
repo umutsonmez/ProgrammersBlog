@@ -41,6 +41,25 @@ namespace ProgrammersBlog.Data.Concrete.EntityFramework.Mappings
             builder.Property(u => u.Note).HasMaxLength(500);
             builder.HasOne(u => u.Role).WithMany(r => r.Users).HasForeignKey(u => u.RoleId);
             builder.ToTable("Users");
+            builder.HasData(new User
+            {
+                Id=1,
+                RoleId=1,
+                FirstName="Umut",
+                LastName="Sönmez",
+                UserName="umutsonmez",
+                Email="umuttsonmez01@gmail.com",
+                IsActive=true,
+                IsDeleted=false,
+                CreatedByName="InitialCreate",
+                CreatedDate=DateTime.Now,
+                ModifiedByName= "InitialCreate",
+                ModifiedDate=DateTime.Now,
+                Description="İlk Admin Kullanıcı",
+                Note="Admin Kullanıcı",
+                PasswordHash= Encoding.ASCII.GetBytes("0192023a7bbd73250516f069df18b500"),
+                Picture= "https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633248_960_720.png"
+            });
 
         }
     }
