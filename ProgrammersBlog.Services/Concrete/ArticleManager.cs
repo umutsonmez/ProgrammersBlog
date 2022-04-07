@@ -33,9 +33,20 @@ namespace ProgrammersBlog.Services.Concrete
             return new Result(ResultStatus.Success, $"{articleAddDto.Title} başlıklı makale başarıyla eklenmiştir.");
         }
 
-        public Task<IResult> Delete(int articleId, string modifiedByName)
+        public async Task<IResult> Delete(int articleId, string modifiedByName)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.Articles.AnyAsync(a => a.Id == articleId);
+            if (result)
+            {
+                var article = await _unitOfWork.Articles.GetAsync(a => a.Id==articleId);
+                article.IsDeleted = true;
+                article.ModifiedByName = modifiedByName;
+                article.ModifiedDate = DateTime.Now;
+                await _unitOfWork.Articles.UpdateAsync(article).ContinueWith(t => _unitOfWork.SaveAsync());
+                return new Result(ResultStatus.Success, $"{article.Title} başlıklı makale başarıyla silinmiştir.");
+            }
+            return new Result(ResultStatus.Error, "Böyle bir makale bulunamadı");
+
         }
 
         public async Task<IDataResult<ArticleDto>> Get(int articleId)
@@ -114,9 +125,16 @@ namespace ProgrammersBlog.Services.Concrete
             return new DataResult<ArticleListDto>(ResultStatus.Error, "Makaleler bulunamadı.", null);
         }
 
-        public Task<IResult> HardDelete(int articleId)
+        public async Task<IResult> HardDelete(int articleId)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.Articles.AnyAsync(a => a.Id == articleId);
+            if (result)
+            {
+                var article = await _unitOfWork.Articles.GetAsync(a => a.Id == articleId);
+                await _unitOfWork.Articles.DeleteAsync(article).ContinueWith(t => _unitOfWork.SaveAsync());
+                return new Result(ResultStatus.Success, $"{article.Title} başlıklı makale başarıyla veritabanından silinmiştir.");
+            }
+            return new Result(ResultStatus.Error, "Böyle bir makale bulunamadı");
         }
 
         public async Task<IResult> Update(ArticleUpdateDto articleUpdateDto, string modifiedByName)
